@@ -57,6 +57,13 @@ aether-roc-gui-v2-1:
   service:
     type: NodePort
 
+# ONOS-TOPO
+onos-topo:
+  atomix:
+    store:
+      consensus:
+        enabled: false
+
 prometheus-amp:
   alertmanager:
     persistentVolume:
