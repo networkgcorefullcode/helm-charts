@@ -255,133 +255,111 @@ grafana:
       allow_sign_up: true
       name: KeyCloak
 
-# prometheus-acc:
-#   prometheus-pushgateway:
-#     enabled: false
-#   prometheus-node-exporter:
-#     enabled: false
-#   kube-state-metrics:
-#     enabled: false
-#   alertmanager:
-#     enabled: false
-#   serverFiles:
-#     alerting_rules.yml:
-#      groups:
-#        - name: UeAlerts
-#          rules:
-#            - alert: UeThroughputLow
-#              expr: ue_throughput < 9000
-#              for: 1m
-#              labels:
-#                severity: info
-#              annotations:
-#                description: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} throughput has been low for more than 1 minutes.'
-#                summary: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} throughput low'
-#            - alert: UeLatencyHigh
-#              expr: ue_latency > 8
-#              for: 1m
-#              labels:
-#                severity: info
-#              annotations:
-#                description: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} latency has been high for more than 1 minutes.'
-#                summary: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} latency high'
-#        - name: VcsAlerts
-#          rules:
-#            - alert: VcsThroughputLow
-#              expr: vcs_throughput < 9000
-#              for: 1m
-#              labels:
-#                severity: info
-#              annotations:
-#                description: 'VCS {{ $labels.vcs_id }} throughput has been low for more than 1 minutes.'
-#                summary: 'VCS {{ $labels.vcs_id }} throughput low'
-#            - alert: VcsLatencyHigh
-#              expr: vcs_latency > 30
-#              for: 1m
-#              labels:
-#                severity: warn
-#              annotations:
-#                description: 'VCS {{ $labels.vcs_id }} latency has been high for more than 1 minutes.'
-#                summary: 'VCS {{ $labels.vcs_id }} latency high'
-#            - alert: VcsJitterHigh
-#              expr: vcs_jitter > 8
-#              for: 1m
-#              labels:
-#                severity: page
-#              annotations:
-#                description: 'VCS {{ $labels.vcs_id }} jitter has been high for more than 1 minutes.'
-#                summary: 'VCS {{ $labels.vcs_id }} jitter high'
-#     prometheus.yml:
-#       scrape_configs:
-#         - job_name: aether-mock-exporter
-#           scrape_interval: 2s
-#           static_configs:
-#             - targets:
-#                 - aether-mock-exporter:2112
-
-# prometheus-amp:
-#   prometheus-pushgateway:
-#     enabled: false
-#   prometheus-node-exporter:
-#     enabled: false
-#   kube-state-metrics:
-#     enabled: false
-#   alertmanager:
-#     enabled: false
-#   serverFiles:
-#     prometheus.yml:
-#       scrape_configs:
-#         - job_name: aether-mock-exporter
-#           scrape_interval: 2s
-#           static_configs:
-#             - targets:
-#                 - aether-mock-exporter:2112
-
-# prometheus-ace:
-#   prometheus-pushgateway:
-#     enabled: false
-#   prometheus-node-exporter:
-#     enabled: false
-#   kube-state-metrics:
-#     enabled: true
-#   alertmanager:
-#     enabled: false
-#   serverFiles:
-#     prometheus.yml:
-#       scrape_configs:
-#         - job_name: aether-mock-exporter
-#           scrape_interval: 2s
-#           static_configs:
-#             - targets:
-#                 - aether-mock-exporter:2112
-#         - job_name: kube-state-metrics
-#           scrape_interval: 2s
-#           static_configs:
-#             - targets:
-#                 - kube-state-metrics:8080
+prometheus-acc:
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+  alertmanager:
+    enabled: false
+  serverFiles:
+    alerting_rules.yml:
+     groups:
+       - name: UeAlerts
+         rules:
+           - alert: UeThroughputLow
+             expr: ue_throughput < 9000
+             for: 1m
+             labels:
+               severity: info
+             annotations:
+               description: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} throughput has been low for more than 1 minutes.'
+               summary: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} throughput low'
+           - alert: UeLatencyHigh
+             expr: ue_latency > 8
+             for: 1m
+             labels:
+               severity: info
+             annotations:
+               description: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} latency has been high for more than 1 minutes.'
+               summary: 'UE {{ $labels.id }} on VCS {{ $labels.slice }} latency high'
+       - name: VcsAlerts
+         rules:
+           - alert: VcsThroughputLow
+             expr: vcs_throughput < 9000
+             for: 1m
+             labels:
+               severity: info
+             annotations:
+               description: 'VCS {{ $labels.vcs_id }} throughput has been low for more than 1 minutes.'
+               summary: 'VCS {{ $labels.vcs_id }} throughput low'
+           - alert: VcsLatencyHigh
+             expr: vcs_latency > 30
+             for: 1m
+             labels:
+               severity: warn
+             annotations:
+               description: 'VCS {{ $labels.vcs_id }} latency has been high for more than 1 minutes.'
+               summary: 'VCS {{ $labels.vcs_id }} latency high'
+           - alert: VcsJitterHigh
+             expr: vcs_jitter > 8
+             for: 1m
+             labels:
+               severity: page
+             annotations:
+               description: 'VCS {{ $labels.vcs_id }} jitter has been high for more than 1 minutes.'
+               summary: 'VCS {{ $labels.vcs_id }} jitter high'
+    prometheus.yml:
+      scrape_configs:
+        - job_name: aether-mock-exporter
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - aether-mock-exporter:2112
 
 prometheus-amp:
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
   alertmanager:
-    persistentVolume:
-      enabled: false
-  server:
-    persistentVolume:
-      enabled: false
-prometheus-acc:
-  alertmanager:
-    persistentVolume:
-      enabled: false
-  server:
-    persistentVolume:
-      enabled: false
-prometheus-ace:
-  alertmanager:
-    persistentVolume:
-      enabled: false
-  server:
-    persistentVolume:
-      enabled: false
+    enabled: false
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: aether-mock-exporter
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - aether-mock-exporter:2112
 
+prometheus-ace:
+  prometheus-pushgateway:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  kube-state-metrics:
+    enabled: true
+  alertmanager:
+    enabled: false
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: aether-mock-exporter
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - aether-mock-exporter:2112
+        - job_name: kube-state-metrics
+          scrape_interval: 2s
+          static_configs:
+            - targets:
+                - kube-state-metrics:8080
+                
 # SD-Core Test Dummy
 # proxy_pass has to be added or nginx will not log the $request_body
 sdcore-test-dummy:
