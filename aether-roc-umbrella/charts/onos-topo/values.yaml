@@ -30,6 +30,10 @@ certManager:
   name: onos-topo-cert
   secretName: onos-topo-secret
 
+store:
+  consensus:
+    enabled: false
+
 issuer:
   name: ca-common-issuer
 

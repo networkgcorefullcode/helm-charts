@@ -84,6 +84,9 @@ plugin:
     version: v1.0.1
     target: ""
 
+store:
+  consensus:
+    enabled: false
 
 atomix:
   sidecar:
