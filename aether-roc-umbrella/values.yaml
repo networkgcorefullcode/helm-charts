@@ -79,23 +79,23 @@ import:
   sdcore-prom-kafka:
     enabled: false
   subscriber-proxy:
-    enabled: true
+    enabled: false
   sdcore-test-dummy:
-    enabled: true
+    enabled: false
   grafana:
-    enabled: true #also enable the proxy below
+    enabled: false #also enable the proxy below
   prometheus:
     acc:
-      enabled: true # controls its plproxy too
+      enabled: false # controls its plproxy too
     amp:
-      enabled: true # controls its plproxy too
+      enabled: false # controls its plproxy too
     ace:
-      enabled: true
+      enabled: false
   prom-label-proxy:
     acc:
-      enabled: true
+      enabled: false
     amp:
-      enabled: true
+      enabled: false
   aether-mock-exporter:
     enabled: true
 
@@ -138,28 +138,18 @@ aether-roc-gui-v2:
         port: 80
 
 aether-roc-gui-v2-1:
-  feature:
-    aether: true
-    sdnfabric: false
+  ingress:
+    enabled: false
   grafana:
-    proxyEnabled: true
-    service: "{{ .Release.Name }}-grafana" # the grafana hostname - use FQDN for other namespaces
+    proxyEnabled: false
   prometheus:
     acc:
-      proxyEnabled: true
-      service: "{{ .Release.Name }}-prom-label-proxy-acc"
-      protocol: http
-      port: 8080
+      proxyEnabled: false
     amp:
-      proxyEnabled: true
-      service: "{{ .Release.Name }}-prom-label-proxy-amp"
-      protocol: http
-      port: 8080
-    site:
-      - name: ace1
-        service: "{{ .Release.Name }}-prometheus-ace-server"
-        protocol: http
-        port: 80
+      proxyEnabled: false
+    site: []
+  service:
+    type: NodePort
 
 # SD-Core Adapter
 # sdcore-adapter-v2-0:
