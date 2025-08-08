@@ -36,6 +36,7 @@ certManager:
 store:
   consensus:
     enabled: false
+    name: store-onos-topo
 
 issuer:
   name: ca-common-issuer
