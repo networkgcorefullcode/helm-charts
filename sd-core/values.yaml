@@ -381,13 +381,13 @@ omec-sub-provision:
             defaultBdtRefId: BdtPolicyId-
             enableNrfCaching: true
             nrfCacheEvictionInterval: 900
-            # plmnList:
-            #   - plmnId:
-            #       mcc: "208"
-            #       mnc: "93"
-            #   - plmnId:
-            #       mcc: "333"
-            #       mnc: "88"
+            plmnList:
+              - plmnId:
+                  mcc: "208"
+                  mnc: "93"
+              - plmnId:
+                  mcc: "333"
+                  mnc: "88"
             serviceList:
               - serviceName: npcf-am-policy-control
               - serviceName: npcf-smpolicycontrol
