@@ -13,12 +13,12 @@ global:
         replicas: 3
         partitions: 30
   store:
-      consensus:
-        enabled: true
-        clusters: 1
-        replicas: 3
-        partitions: 30
-        name: store-store
+    consensus:
+      enabled: true
+      clusters: 1
+      replicas: 3
+      partitions: 30
+      name: store-store
 
 import:
   aether-roc-gui:
