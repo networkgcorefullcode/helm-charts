@@ -1,0 +1,15 @@
+apiVersion: v2
+appVersion: v0.10.3
+description: Aether ROC Graphical User Interface
+home: https://www.opennetworking.org/aether/
+keywords:
+- aether
+- roc
+- gui
+kubeVersion: '>=1.15.0'
+maintainers:
+- email: support@opennetworking.org
+  name: Aether Ops team
+name: aether-roc-gui
+type: application
+version: 2.1.20

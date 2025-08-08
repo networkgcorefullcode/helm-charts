@@ -1,0 +1,15 @@
+apiVersion: v2
+appVersion: v2.0.0
+description: Aether SD-Core Adapter
+home: https://www.opennetworking.org/aether/
+keywords:
+- aether
+- sdcore
+- adapter
+kubeVersion: '>=1.17.0'
+maintainers:
+- email: support@opennetworking.org
+  name: Aether Ops team
+name: sdcore-adapter-v2
+type: application
+version: 2.1.1

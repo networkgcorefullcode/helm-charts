@@ -1,0 +1,17 @@
+apiVersion: v2
+appVersion: v0.8.7
+description: Aether ROC Websocket
+home: https://www.opennetworking.org/aether/
+keywords:
+- aether
+- alerts
+- roc
+- openapi3
+- websocket
+kubeVersion: '>=1.15.0'
+maintainers:
+- email: support@opennetworking.org
+  name: Aether Ops team
+name: aether-roc-websocket
+type: application
+version: 1.2.0

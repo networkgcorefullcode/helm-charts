@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: v0.3.6
+description: Prom Label Proxy
+home: https://onosproject.org
+keywords:
+- onos
+kubeVersion: '>=1.17.0'
+maintainers:
+- email: support@opennetworking.org
+  name: ONOS Support
+name: prom-label-proxy
+type: application
+version: 0.1.3

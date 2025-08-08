@@ -1,0 +1,17 @@
+apiVersion: v2
+appVersion: v0.10.26
+description: Aether ROC API
+home: https://www.opennetworking.org/aether/
+keywords:
+- aether
+- config
+- roc
+- openapi3
+- gnmi
+kubeVersion: '>=1.15.0'
+maintainers:
+- email: support@opennetworking.org
+  name: Aether Ops team
+name: aether-roc-api
+type: application
+version: 1.7.14

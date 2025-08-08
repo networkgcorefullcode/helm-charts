@@ -79,23 +79,23 @@ import:
   sdcore-prom-kafka:
     enabled: false
   subscriber-proxy:
-    enabled: false
+    enabled: true
   sdcore-test-dummy:
-    enabled: false
+    enabled: true
   grafana:
-    enabled: false #also enable the proxy below
+    enabled: true #also enable the proxy below
   prometheus:
     acc:
-      enabled: false # controls its plproxy too
+      enabled: true # controls its plproxy too
     amp:
-      enabled: false # controls its plproxy too
+      enabled: true # controls its plproxy too
     ace:
-      enabled: false
+      enabled: true
   prom-label-proxy:
     acc:
-      enabled: false
+      enabled: true
     amp:
-      enabled: false
+      enabled: true
   aether-mock-exporter:
     enabled: true
 
@@ -118,16 +118,16 @@ aether-roc-api: {}
 # Aether ROC GUI
 aether-roc-gui-v2:
   grafana:
-    proxyEnabled: false
+    proxyEnabled: true
     service: "{{ .Release.Name }}-grafana" # the grafana hostname - use FQDN for other namespaces
   prometheus:
     acc:
-      proxyEnabled: false
+      proxyEnabled: true
       service: "{{ .Release.Name }}-prom-label-proxy-acc"
       protocol: http
       port: 8080
     amp:
-      proxyEnabled: false
+      proxyEnabled: true
       service: "{{ .Release.Name }}-prom-label-proxy-amp"
       protocol: http
       port: 8080
@@ -138,26 +138,37 @@ aether-roc-gui-v2:
         port: 80
 
 aether-roc-gui-v2-1:
-  ingress:
-    enabled: false
+  feature:
+    aether: true
+    sdnfabric: false
   grafana:
-    proxyEnabled: false
+    proxyEnabled: true
+    service: "{{ .Release.Name }}-grafana" # the grafana hostname - use FQDN for other namespaces
   prometheus:
     acc:
-      proxyEnabled: false
+      proxyEnabled: true
+      service: "{{ .Release.Name }}-prom-label-proxy-acc"
+      protocol: http
+      port: 8080
     amp:
-      proxyEnabled: false
-    site: []
-  service:
-    type: NodePort
+      proxyEnabled: true
+      service: "{{ .Release.Name }}-prom-label-proxy-amp"
+      protocol: http
+      port: 8080
+    site:
+      - name: ace1
+        service: "{{ .Release.Name }}-prometheus-ace-server"
+        protocol: http
+        port: 80
 
 # SD-Core Adapter
-# sdcore-adapter-v2-0:
-#   prometheusEnabled: false
-#   partialUpdateEnabled: true
+sdcore-adapter-v2-0:
+  prometheusEnabled: false
+  partialUpdateEnabled: true
 
 sdcore-adapter-v2-1:
-  defaultTarget: the-enterprise
+  prometheusEnabled: false
+  partialUpdateEnabled: true  
 
 # Subscriber Proxy
 subscriber-proxy:
@@ -366,10 +377,10 @@ onos-config:
       consensus:
         enabled: false
   modelPlugins:
-    # - name: aether-2
-    #   image: onosproject/aether-2.0.x:2.0.16-aether-2.0.x
-    #   endpoint: localhost
-    #   port: 5152
+    - name: aether-2
+      image: onosproject/aether-2.0.x:2.0.16-aether-2.0.x
+      endpoint: localhost
+      port: 5152
     - name: aether-2-1
       image: onosproject/aether-2.1.x:2.1.16-aether-2.1.x
       endpoint: localhost
@@ -379,11 +390,16 @@ onos-config:
     enabled: false
     regoConfigMap: opa-rbac
 
-
 enterprises:
-  - id: the-enterprise
-    name: The Enterprise
-    lat: 32.3438
-    long: -111.0120
+  - id: starbucks
+    name: Starbucks Enterprise
+    lat: 47.581115
+    long: -122.335692
+  - id: acme
+    name: ACME Enterprise
+    lat: 41.974568
+    long: -87.782062
   - id: defaultent
     name: Default Enterprise
+    lat: 37.453017
+    long: -122.180708
