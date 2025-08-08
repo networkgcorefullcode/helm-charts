@@ -92,6 +92,9 @@ onos-topo:
     store:
       consensus:
         enabled: false
+  store:
+    consensus:
+      name: "name-onostopo"
 
 # ONOS-GUI
 onos-gui: {}
@@ -359,7 +362,7 @@ prometheus-ace:
           static_configs:
             - targets:
                 - kube-state-metrics:8080
-                
+
 # SD-Core Test Dummy
 # proxy_pass has to be added or nginx will not log the $request_body
 sdcore-test-dummy:
