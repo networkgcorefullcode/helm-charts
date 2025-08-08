@@ -15,6 +15,9 @@ global:
     store:
       consensus:
         enabled: false
+  store:
+      consensus:
+        enabled: false
 
 replicaCount: 1
 
