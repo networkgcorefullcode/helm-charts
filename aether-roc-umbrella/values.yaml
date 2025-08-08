@@ -79,23 +79,23 @@ import:
   sdcore-prom-kafka:
     enabled: false
   subscriber-proxy:
-    enabled: false
+    enabled: true
   sdcore-test-dummy:
-    enabled: false
+    enabled: true
   grafana:
-    enabled: false #also enable the proxy below
+    enabled: true #also enable the proxy below
   prometheus:
     acc:
-      enabled: false # controls its plproxy too
+      enabled: true # controls its plproxy too
     amp:
-      enabled: false # controls its plproxy too
+      enabled: true # controls its plproxy too
     ace:
-      enabled: false
+      enabled: true
   prom-label-proxy:
     acc:
-      enabled: false
+      enabled: true
     amp:
-      enabled: false
+      enabled: true
   aether-mock-exporter:
     enabled: true
 
@@ -142,16 +142,16 @@ aether-roc-gui-v2-1:
     aether: true
     sdnfabric: false
   grafana:
-    proxyEnabled: false
+    proxyEnabled: true
     service: "{{ .Release.Name }}-grafana" # the grafana hostname - use FQDN for other namespaces
   prometheus:
     acc:
-      proxyEnabled: false
+      proxyEnabled: true
       service: "{{ .Release.Name }}-prom-label-proxy-acc"
       protocol: http
       port: 8080
     amp:
-      proxyEnabled: false
+      proxyEnabled: true
       service: "{{ .Release.Name }}-prom-label-proxy-amp"
       protocol: http
       port: 8080
