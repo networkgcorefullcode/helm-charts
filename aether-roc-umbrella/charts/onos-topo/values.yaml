@@ -18,6 +18,7 @@ global:
   store:
       consensus:
         enabled: false
+        name: global-onostopo
 
 replicaCount: 1
 
