@@ -1,0 +1,18 @@
+dependencies:
+- name: omec-control-plane
+  repository: file://../omec-control-plane
+  version: 0.13.0
+- name: omec-sub-provision
+  repository: file://../omec-sub-provision
+  version: 2.0.0
+- name: 5g-control-plane
+  repository: file://../5g-control-plane
+  version: 2.0.0
+- name: bess-upf
+  repository: file://../bess-upf
+  version: 1.1.1
+- name: 5g-ran-sim
+  repository: file://../5g-ran-sim
+  version: 2.0.0
+digest: sha256:06d00fd842d6ec7190d96e123efff3003c1c0fd3910e5aae0fa4db01f51f069e
+generated: "2024-11-21T05:52:57.401013849Z"
