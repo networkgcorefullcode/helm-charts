@@ -18,6 +18,7 @@ global:
         clusters: 1
         replicas: 3
         partitions: 30
+        name: store-store
 
 import:
   aether-roc-gui:
