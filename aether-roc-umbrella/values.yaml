@@ -57,11 +57,18 @@ atomix:
       securityContext:
         runAsUser: 0
 
-aether-roc-gui:
-  v2-1:
+import:
+  onos-topo:
     enabled: true
-  v2-0: # This is the new v2, not the old one...
-    enabled: false
+  onos-config:
+    enabled: true
+  onos-cli:
+    enabled: true
+  aether-roc-gui:
+    v2-1:
+      enabled: true
+    v2-0: # This is the new v2, not the old one...
+      enabled: false
   sdcore-adapter:
     v2-1:
       enabled: true
