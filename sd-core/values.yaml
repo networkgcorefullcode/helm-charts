@@ -306,6 +306,7 @@ omec-sub-provision:
       authUrl: mongodb://mongodb-arbiter-headless
 
     webui:
+      serviceType: NodePort
       urlportConfigs:
         port: 5001
       ingress:
