@@ -291,9 +291,19 @@ omec-sub-provision:
   kafka:
     deploy: true
 
+  mongodb:
+    usePassword: false
+    persistence:
+      enabled: false
+    architecture: replicaset
+    replicaCount: 2
+
   config:
     mongodb:
       name: aether
+      url: mongodb://mongodb-arbiter-headless # Enable if cluster deployment required
+      authKeysDbName: authentication
+      authUrl: mongodb://mongodb-arbiter-headless
 
     webui:
       urlportConfigs:
