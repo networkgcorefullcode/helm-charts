@@ -24,12 +24,15 @@ spec:
   - name: urlport-http
     port: {{ .Values.config.webui.urlport.port }}
     protocol: TCP
+{{- if eq .Values.config.webui.serviceType "NodePort" }}
+{{- if .Values.config.webui.urlport.nodePort }}
+    nodePort: {{ .Values.config.webui.urlport.nodePort }}
   - name: urlport-configs
     port: {{ .Values.config.webui.urlportConfigs.port }}
     protocol: TCP
 {{- if eq .Values.config.webui.serviceType "NodePort" }}
-{{- if .Values.config.webui.urlport.nodePort }}
-    nodePort: {{ .Values.config.webui.urlport.nodePort }}
+{{- if .Values.config.webui.urlportConfigs.nodePort }}
+    nodePort: {{ .Values.config.webui.urlportConfigs.nodePort }}
 {{- end }}
 {{- end }}
   - name: grpc
