@@ -309,7 +309,7 @@ omec-sub-provision:
       serviceType: NodePort
       urlportConfigs:
         port: 5001
-        nodePort: 31002
+        nodePort: 35002
 
       ingress:
         enabled: false
