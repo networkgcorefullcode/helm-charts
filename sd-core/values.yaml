@@ -331,6 +331,9 @@ omec-sub-provision:
             nfconfig-tls:
               # pem: "/var/run/certs/tls.crt"
               # key: "/var/run/certs/tls.key"
+            managedByConfigPod:
+              enabled: false
+              syncUrl: http://roc-sdcore-adapter-v2-1.aether-roc.svc:8080/synchronize
 
     upfadapter:
       deploy: false
