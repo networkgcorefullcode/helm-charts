@@ -215,10 +215,10 @@ config:
     urlport:
       port: 5000
       # Provide nodePort when serviceType is NodePort
-      nodePort: 35000
+      nodePort: 30001
     grpc:
       port: 9876
-      nodePort: 35001
+      nodePort: 30002
     # ingress:
     #   enabled: false
     #   hostname: free5gc.local
