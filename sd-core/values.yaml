@@ -43,14 +43,14 @@ omec-user-plane:
       enb:
         subnet: "172.20.0.0/16" # Subnet for the gNB network
       access:
-        ipam: static
-        cniPlugin: macvlan  # Can be any other plugin. Dictates how IP address are assigned
+        ipam: dynamic
+        cniPlugin: default  # Can be any other plugin. Dictates how IP address are assigned
         iface: ens5
         gateway: 172.31.16.1
         ip: 172.31.16.50/20
       core:
-        ipam: static
-        cniPlugin: macvlan  # Can be any other plugin. Dictates how IP address are assigned
+        ipam: dynamic
+        cniPlugin: default  # Can be any other plugin. Dictates how IP address are assigned
         iface: ens5
         gateway: 172.31.16.1
         ip: 172.31.16.51/20
