@@ -17,12 +17,12 @@ config:
     access:
       iface: ens6
       cniPlugin: ipvlan
-      ip: "10.0.2.67/24"
+      ip: "10.0.2.68/24"
       gateway: "10.0.2.1"
     core:
       iface: ens7
       cniPlugin: ipvlan
-      ip: "10.0.3.230/24"
+      ip: "10.0.3.231/24"
       gateway: "10.0.3.1"
     closedLoop: false
     cfgFiles:
