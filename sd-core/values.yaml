@@ -20,31 +20,7 @@ omec-control-plane:
 # Override values for omec-user-plane Helm Chart
 # https://github.com/omec-project/sdcore-helm-charts/blob/main/bess-upf/values.yaml
 omec-user-plane:
-  enable: true
-  nodeSelectors:
-    enabled: true
-  resources:
-    enabled: false
-  images:
-    # tags:
-      bess: network5gcore/upf-epc-bess:rel-2.1.3
-      pfcpiface: network5gcore/upf-epc-pfcpiface:rel-2.1.3
-      # tools: omecproject/busybox:stable
-  config:
-    upf:
-      privileged: true
-      enb:
-        subnet: "10.22.0.128/26"
-      access:
-        ip: "10.0.2.67/24"
-        gateway: "10.0.2.1"
-        mac: "0e:c4:13:23:93:e7"
-        resourceName: "intel.com/intel_sriov_vfio_access"
-      core:
-        ip: "10.0.3.230/24"
-        gateway: "10.0.3.1"
-        mac: "0e:ac:c9:32:1a:c9"
-        resourceName: "intel.com/intel_sriov_vfio_core"
+  enable: false
 
 omec-sub-provision:
   enable: true
