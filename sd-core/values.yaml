@@ -316,6 +316,7 @@ omec-sub-provision:
             smfDBName: sdcore_smf
             enableDBStore: false
             enableNrfCaching: true
+            enableUPFAdapter: false
             nrfCacheEvictionInterval: 900
             debugProfilePort: 5001
             kafkaInfo:
