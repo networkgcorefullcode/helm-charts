@@ -17,12 +17,12 @@ config:
     access:
       iface: ens6
       cniPlugin: macvlan
-      ip: "192.168.252.5"
+      ip: "192.168.252.5/24"
       gateway: "192.168.252.1"
     core:
       iface: ens7
       cniPlugin: macvlan
-      ip: "192.168.250.5"
+      ip: "192.168.250.5/24"
       gateway: "192.168.250.1"
     closedLoop: false
     cfgFiles:
