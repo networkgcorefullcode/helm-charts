@@ -1,0 +1,15 @@
+config:
+  upf:
+    privileged: true
+    enb:
+      subnet: "10.22.0.128/26"
+    access:
+      ip: "10.0.2.67/24"
+      gateway: "10.0.2.1"
+      mac: "0e:ac:c9:32:1a:c9"
+      resourceName: "intel.com/intel_sriov_vfio_access"
+    core:
+      ip: "10.0.3.230/24"
+      gateway: "10.0.3.1"
+      mac: "0e:c4:13:23:93:e7"
+      resourceName: "intel.com/intel_sriov_vfio_core"
