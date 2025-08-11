@@ -9,7 +9,7 @@ config:
     hugepage:
       enabled: false    # Should be enabled if DPDK is enabled
     routes:
-      - to: ""
+      - to: "0.0.0.0/0"
         via: 169.254.1.1
     enb:
       subnet: "10.22.0.128/26" # Subnet for the gNB network
