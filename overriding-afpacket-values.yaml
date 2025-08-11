@@ -9,18 +9,15 @@ config:
       enabled: false    # SRIOV is disabled by default
     hugepage:
       enabled: false    # Should be enabled if DPDK is enabled
-    routes:
-      - to: "0.0.0.0/0"
-        via: 169.254.1.1
     enb:
       subnet: "10.22.0.128/26" # Subnet for the gNB network
     access:
-      iface: ens6
+      iface: ens5
       cniPlugin: macvlan
       ip: "192.168.252.5/24"
       gateway: "192.168.252.1"
     core:
-      iface: ens7
+      iface: ens5
       cniPlugin: macvlan
       ip: "192.168.250.5/24"
       gateway: "192.168.250.1"
