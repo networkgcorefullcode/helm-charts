@@ -285,6 +285,18 @@ omec-sub-provision:
     upfadapter:
       deploy: false
 
+    smf:
+        smfcfg.yaml:
+          configuration:
+            enableUPFAdapter: false
+            userplane_information:
+                UPF:
+                  node_id: upf.bess-upf.svc.cluster.local
+                  interfaces: # Interface list for this UPF
+                    - interfaceType: N3 # the type of the interface (N3 or N9)
+                      endpoints: # the IP address of this N3/N9 interface on this UPF
+                        - upf.bess-upf.svc.cluster.local
+
 5g-ran-sim:
   enable: false
   #images:
