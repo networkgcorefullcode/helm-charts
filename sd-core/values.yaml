@@ -286,6 +286,7 @@ omec-sub-provision:
       deploy: false
 
     smf:
+      cfgFiles:
         smfcfg.yaml:
           configuration:
             enableUPFAdapter: false
