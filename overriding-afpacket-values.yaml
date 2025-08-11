@@ -3,6 +3,7 @@ resources:
 
 config:
   upf:
+    privileged: true
     name: "oaisim"
     sriov:
       enabled: false    # SRIOV is disabled by default
