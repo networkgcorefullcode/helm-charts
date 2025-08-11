@@ -3,6 +3,8 @@ resources:
 
 config:
   upf:
+    sriov:
+      enabled: false
     privileged: true
     enb:
       subnet: "10.22.0.128/26"
