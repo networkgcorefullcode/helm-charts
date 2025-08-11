@@ -16,14 +16,14 @@ config:
       subnet: "10.22.0.128/26" # Subnet for the gNB network
     access:
       iface: ens6
-      cniPlugin: ipvlan
-      ip: "10.0.2.68/24"
-      gateway: "10.0.2.1"
+      cniPlugin: macvlan
+      ip: "192.168.252.5"
+      gateway: "192.168.252.1"
     core:
       iface: ens7
-      cniPlugin: ipvlan
-      ip: "10.0.3.231/24"
-      gateway: "10.0.3.1"
+      cniPlugin: macvlan
+      ip: "192.168.250.5"
+      gateway: "192.168.250.1"
     closedLoop: false
     cfgFiles:
       upf.jsonc:
