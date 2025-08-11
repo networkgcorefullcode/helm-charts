@@ -10,16 +10,19 @@ config:
     hugepage:
       enabled: false    # Should be enabled if DPDK is enabled
     enb:
-      subnet: "10.22.0.128/26" # Subnet for the gNB network
+      subnet: "10.0.1.0/24" # Subnet for the gNB network
+    routes:
+        - to: 10.0.1.33/24
+          via: 169.254.1.1
     access:
       iface: ens5
       cniPlugin: macvlan
-      ip: "192.168.252.5/24"
+      ip: "192.168.252.3/24"
       gateway: "192.168.252.1"
     core:
       iface: ens5
       cniPlugin: macvlan
-      ip: "192.168.250.5/24"
+      ip: "192.168.250.3/24"
       gateway: "192.168.250.1"
     closedLoop: false
     cfgFiles:
