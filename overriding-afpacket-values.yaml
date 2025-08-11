@@ -15,15 +15,15 @@ config:
         - to: 10.0.1.33/32
           via: 169.254.1.1
     access:
-      iface: ens5
-      cniPlugin: macvlan
-      ip: "10.0.20.3/24"
-      gateway: "10.0.20.1"
+      iface: ens6
+      cniPlugin: host-device
+      ip: "10.0.2.67/24"
+      gateway: "10.0.2.1"
     core:
-      iface: ens5
-      cniPlugin: macvlan
-      ip: "10.0.25.3/24"
-      gateway: "10.0.25.1"
+      iface: ens7
+      cniPlugin: host-device
+      ip: "10.0.3.230/24"
+      gateway: "10.0.3.1"
     closedLoop: false
     cfgFiles:
       upf.jsonc:
