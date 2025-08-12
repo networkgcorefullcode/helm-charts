@@ -19,9 +19,9 @@ configuration:
     # port: 8080
   gnbs: # pool of gNodeBs
     gnb1:
-      n2IpAddr: POD_IP # gNB N2 interface IP address used to connect to AMF
+      n2IpAddr: 192.168.100.10 # gNB N2 interface IP address used to connect to AMF
       n2Port: 9487 # gNB N2 Port used to connect to AMF
-      n3IpAddr: POD_IP # gNB N3 interface IP address used to connect to UPF. when singleInterface mode is false
+      n3IpAddr: 192.168.100.10 # gNB N3 interface IP address used to connect to UPF. when singleInterface mode is false
       # n3IpAddr: "172.20.0.10" # when gnb is deployed in singleInterface mode
       n3Port: 2152 # gNB N3 Port used to connect to UPF
       name: gnb1 # gNB name that uniquely identify a gNB within application
