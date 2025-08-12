@@ -1,0 +1,9 @@
+services:
+  gnbsim:
+    image: network5gcore/5gc-gnbsim:rel-1.6.5
+    container_name: gnbsim
+    command: ["/usr/local/bin/gnbsim", "--cfg", "/app/config.yaml"]
+    volumes:
+      - ./configs/config-1.yaml:/app/config.yaml
+    network_mode: host
+    restart: unless-stopped

@@ -249,6 +249,17 @@ omec-sub-provision:
       authKeysDbName: authentication
       authUrl: mongodb://mongodb-arbiter-headless
 
+    amf:
+      serviceType: NodePort
+      prometheus:
+        nodePort: 30084
+      sctp_grpc:
+        nodePort: 30088
+      sbi:
+        nodePort: 30087
+      ngapp:
+        nodePort: 30071
+
     webui:
       serviceType: NodePort
       urlportConfigs:
