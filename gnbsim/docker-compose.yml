@@ -5,5 +5,14 @@ services:
     command: ["/usr/local/bin/gnbsim", "--cfg", "/app/config.yaml"]
     volumes:
       - ./configs/config-1.yaml:/app/config.yaml
-    network_mode: host
     restart: unless-stopped
+    networks:
+      gnbsim_net:
+        ipv4_address: 172.20.0.10
+
+networks:
+  gnbsim_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
