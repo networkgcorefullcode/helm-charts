@@ -292,6 +292,7 @@ omec-sub-provision:
     deploy: false
 
   mongodb:
+    deploy: true
     usePassword: false
     persistence:
       enabled: false
