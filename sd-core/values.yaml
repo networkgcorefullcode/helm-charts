@@ -289,7 +289,7 @@ omec-sub-provision:
     pullPolicy: IfNotPresent
 
   kafka:
-    deploy: true
+    deploy: false
 
   mongodb:
     usePassword: false
