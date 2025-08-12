@@ -10,7 +10,7 @@ config:
     hugepage:
       enabled: false    # Should be enabled if DPDK is enabled
     enb:
-      subnet: "172.20.0.0/16" # Subnet for the gNB network
+      subnet: "172.17.0.0/16" # Subnet for the gNB network
     routes:
         - to: 10.0.1.33/32
           via: 169.254.1.1
