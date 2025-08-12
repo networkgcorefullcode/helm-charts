@@ -20,6 +20,7 @@ omec-control-plane:
 # Override values for omec-user-plane Helm Chart
 # https://github.com/omec-project/sdcore-helm-charts/blob/main/bess-upf/values.yaml
 omec-user-plane:
+  privileged: true
   enable: true
   nodeSelectors:
     enabled: true
@@ -47,13 +48,13 @@ omec-user-plane:
         cniPlugin: macvlan  # Can be any other plugin. Dictates how IP address are assigned
         iface: ens19
         gateway: 192.168.252.1
-        ip: 192.168.252.3/20
+        ip: 192.168.252.3/24
       core:
         ipam: static
         cniPlugin: macvlan  # Can be any other plugin. Dictates how IP address are assigned
         iface: ens19
         gateway: 192.168.250.1
-        ip: 192.168.250.3/20
+        ip: 192.168.250.3/24
       closedLoop: false
       cfgFiles:
         upf.jsonc:
