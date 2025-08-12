@@ -38,22 +38,22 @@ omec-user-plane:
       hugepage:
         enabled: false    # Should be enabled if DPDK is enabled
       routes:
-        - to: 10.76.28.173/32
+        - to: 192.168.12.16/32
           via: 169.254.1.1
       enb:
         subnet: "172.20.0.0/16" # Subnet for the gNB network
       access:
         ipam: static
         cniPlugin: macvlan  # Can be any other plugin. Dictates how IP address are assigned
-        iface: ens5
-        gateway: 172.31.16.1
-        ip: 172.31.16.50/20
+        iface: ens19
+        gateway: 192.168.252.1
+        ip: 192.168.252.3/20
       core:
         ipam: static
         cniPlugin: macvlan  # Can be any other plugin. Dictates how IP address are assigned
-        iface: ens5
-        gateway: 172.31.16.1
-        ip: 172.31.16.51/20
+        iface: ens19
+        gateway: 192.168.250.1
+        ip: 192.168.250.3/20
       closedLoop: false
       cfgFiles:
         upf.jsonc:
