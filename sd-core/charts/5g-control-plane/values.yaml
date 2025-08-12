@@ -461,7 +461,7 @@ config:
           nrfCacheEvictionInterval: 900
           debugProfilePort: 5001
           kafkaInfo:
-            enabledKafka: false
+            enableKafka: false
             brokerUri: "kafka-headless"
             brokerPort: 9092
             topicName: "sdcore-data-source-amf"
@@ -610,7 +610,7 @@ config:
           nrfCacheEvictionInterval: 900
           debugProfilePort: 5001
           kafkaInfo:
-            enabledKafka: false
+            enableKafka: false
             brokerUri: "kafka-headless"
             brokerPort: 9092
             topicName: "sdcore-data-source-smf"
