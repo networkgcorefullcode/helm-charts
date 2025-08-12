@@ -240,7 +240,7 @@ omec-sub-provision:
     persistence:
       enabled: false
     architecture: replicaset
-    replicaCount: 2
+    replicaCount: 1
 
   config:
     mongodb:
