@@ -310,6 +310,19 @@ omec-sub-provision:
       urlportConfigs:
         port: 5001
         nodePort: 30003
+    amf:
+      serviceType: NodePort
+      prometheus:
+        nodePort: 30084
+      sctp_grpc:
+        port: 9000
+        nodePort: 30088
+      sbi:
+        port: 29518
+        nodePort: 30087
+      ngapp:
+        port: 38412
+        nodePort: 30071
 
       ingress:
         enabled: false

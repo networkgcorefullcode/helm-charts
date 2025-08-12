@@ -46,7 +46,7 @@ configuration:
                 - sst: 2
       defaultAmf:
         hostName: AMF # Host name of AMF
-        ipAddr: amf # AMF IP address
+        ipAddr: 192.168.12.16 # AMF IP address
         port: 30071 # AMF port
 
   customProfiles:
