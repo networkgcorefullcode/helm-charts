@@ -7,12 +7,15 @@ services:
       - ./configs/config-1.yaml:/app/config.yaml
     restart: unless-stopped
     networks:
-      gnbsim_net:
+      gnbsim_macvlan:
         ipv4_address: 172.20.0.10
 
 networks:
-  gnbsim_net:
-    driver: bridge
+  gnbsim_macvlan:
+    driver: macvlan
+    driver_opts:
+      parent: ens19  # Cambia 'eth0' por la interfaz física de tu host
     ipam:
       config:
         - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
