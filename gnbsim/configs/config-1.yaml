@@ -47,7 +47,7 @@ configuration:
       defaultAmf:
         hostName: AMF # Host name of AMF
         ipAddr: localhost # AMF IP address
-        port: 38412 # AMF port
+        port: 30071 # AMF port
 
   customProfiles:
     customProfiles1:
