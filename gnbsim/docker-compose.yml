@@ -14,7 +14,7 @@ networks:
   gnbsim_macvlan:
     driver: macvlan
     driver_opts:
-      parent: ens19  # Cambia 'eth0' por la interfaz física de tu host
+      parent: ens19  # Change for your network interface
     ipam:
       config:
         - subnet: 172.20.0.0/16
