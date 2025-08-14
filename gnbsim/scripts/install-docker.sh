@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Script para instalar Docker en Ubuntu
-# Equivalente al playbook de Ansible proporcionado
+# Script to install Docker on Ubuntu
+# Equivalent to the provided Ansible playbook
 
 set -e
 
-# Cargar variables del archivo .env
+ # Load variables from .env file
 if [ -f .env ]; then
     source .env
     echo "✓ Variables loaded from .env"
@@ -16,7 +16,7 @@ else
     DOCKER_GPG_URL=${DOCKER_GPG_URL:-https://download.docker.com/linux/ubuntu/gpg}
 fi
 
-# Colores para output
+ # Output colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -34,7 +34,7 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Función para verificar si docker está instalado
+ # Function to check if Docker is installed
 check_docker_installed() {
     print_status "Verificando si Docker está instalado..."
     if command -v docker &> /dev/null; then
@@ -47,7 +47,7 @@ check_docker_installed() {
     fi
 }
 
-# Función para obtener la arquitectura del sistema
+ # Function to get system architecture
 get_architecture() {
     ARCH=$(uname -m)
     case $ARCH in
@@ -63,7 +63,7 @@ get_architecture() {
     esac
 }
 
-# Función principal de instalación
+ # Main installation function
 install_docker() {
     print_status "Starting Docker installation..."
     
@@ -143,7 +143,7 @@ install_docker() {
     print_status "Docker installed successfully!"
 }
 
-# Function to test Docker
+ # Function to test Docker
 test_docker() {
     print_status "Testing Docker installation..."
     
@@ -158,7 +158,7 @@ test_docker() {
     print_status "Docker test completed successfully!"
 }
 
-# Main function
+ # Main function
 main() {
     echo "=========================================="
     echo "  Docker Installation Script"
@@ -194,17 +194,17 @@ main() {
     test_docker
     
     echo
-    print_status "=========================================="
-    print_status "  Instalación completada exitosamente"
-    print_status "=========================================="
-    print_warning "NOTA: Es posible que necesites cerrar sesión y volver a iniciar"
-    print_warning "      para que los cambios de grupo surtan efecto."
+        print_status "=========================================="
+        print_status "  Installation completed successfully"
+        print_status "=========================================="
+        print_warning "NOTE: You may need to log out and log back in"
+        print_warning "      for group changes to take effect."
 }
 
-# Verificar si bc está instalado (para comparación de versiones)
+ # Check if bc is installed (for version comparison)
 if ! command -v bc &> /dev/null; then
     sudo apt update && sudo apt install -y bc
 fi
 
-# Ejecutar función principal
+ # Run main function
 main "$@"
