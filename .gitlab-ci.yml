@@ -89,8 +89,8 @@ package_and_publish:
           fi
         fi
       done
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
 
 publish_to_github_packages:
   stage: publish_github
@@ -173,5 +173,5 @@ publish_to_github_packages:
           fi
         fi
       done
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
