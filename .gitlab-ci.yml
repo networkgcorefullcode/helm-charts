@@ -28,31 +28,43 @@ package_and_publish:
         # Check if it's a Helm directory (has Chart.yaml) and has your VERSION file
         if [ -f "$dir/Chart.yaml" ] && [ -f "$dir/VERSION" ]; then
           
-          # Check if this directory had changes
-          if echo "$CHANGED_FILES" | grep -q "^$dir/"; then
-            
-            # Read version from first line
-            VERSION=$(cat $dir/VERSION | sed -n '1p')
-            
-            # Read environment from second line (dev or prod)
-            ENVIRONMENT=$(cat $dir/VERSION | sed -n '2p')
-            
-            # Set channel based on environment
-            if [ "$ENVIRONMENT" = "prod" ]; then
-              CHANNEL="stable"
-            else
-              CHANNEL="dev"
-            fi
-            
-            # Build Helm repository URL with the appropriate channel
-            HELM_REPO_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/${CHANNEL}/charts"
-            
-            CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
-            
-            echo "--------------------------------------------------"
-            echo "Change detected in: $dir"
-            echo "Chart: $CHART_NAME | Target version: $VERSION"
-            echo "Environment: $ENVIRONMENT | Channel: $CHANNEL"
+          # Read version from first line of VERSION file
+          VERSION=$(cat $dir/VERSION | sed -n '1p')
+          
+          # Read current version from Chart.yaml
+          CHART_VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
+          
+          # Read environment from second line (dev or prod)
+          ENVIRONMENT=$(cat $dir/VERSION | sed -n '2p')
+          
+          CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
+          
+          echo "--------------------------------------------------"
+          echo "Checking: $dir"
+          echo "Chart: $CHART_NAME"
+          echo "Current version (Chart.yaml): $CHART_VERSION"
+          echo "Target version (VERSION file): $VERSION"
+          echo "Environment: $ENVIRONMENT"
+          
+          # Compare versions: only proceed if VERSION > CHART_VERSION
+          if [ "$(printf '%s\n' "$CHART_VERSION" "$VERSION" | sort -V | tail -n1)" != "$VERSION" ] || [ "$VERSION" = "$CHART_VERSION" ]; then
+            echo "⏭️ Skipping: VERSION ($VERSION) is not greater than Chart.yaml version ($CHART_VERSION)"
+            continue
+          fi
+          
+          echo "✓ Version check passed: $VERSION > $CHART_VERSION"
+          
+          # Set channel based on environment
+          if [ "$ENVIRONMENT" = "prod" ]; then
+            CHANNEL="stable"
+          else
+            CHANNEL="dev"
+          fi
+          
+          # Build Helm repository URL with the appropriate channel
+          HELM_REPO_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/${CHANNEL}/charts"
+          
+          echo "Channel: $CHANNEL"
             
             # KEY STEP: Update the version in Chart.yaml to match your VERSION file
             # This ensures the generated package has the correct version (x.x.x)
@@ -115,21 +127,31 @@ publish_to_github_packages:
         # Check if it's a Helm directory (has Chart.yaml) and has VERSION file
         if [ -f "$dir/Chart.yaml" ] && [ -f "$dir/VERSION" ]; then
           
-          # Check if this directory had changes
-          if echo "$CHANGED_FILES" | grep -q "^$dir/"; then
-            
-            # Read version from first line
-            VERSION=$(cat $dir/VERSION | sed -n '1p')
-            
-            # Read environment from second line (dev or prod)
-            ENVIRONMENT=$(cat $dir/VERSION | sed -n '2p')
-            
-            CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
-            
-            echo "--------------------------------------------------"
-            echo "Change detected in: $dir"
-            echo "Chart: $CHART_NAME | Version: $VERSION"
-            echo "Environment: $ENVIRONMENT"
+          # Read version from first line of VERSION file
+          VERSION=$(cat $dir/VERSION | sed -n '1p')
+          
+          # Read current version from Chart.yaml
+          CHART_VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
+          
+          # Read environment from second line (dev or prod)
+          ENVIRONMENT=$(cat $dir/VERSION | sed -n '2p')
+          
+          CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
+          
+          echo "--------------------------------------------------"
+          echo "Checking: $dir"
+          echo "Chart: $CHART_NAME"
+          echo "Current version (Chart.yaml): $CHART_VERSION"
+          echo "Target version (VERSION file): $VERSION"
+          echo "Environment: $ENVIRONMENT"
+          
+          # Compare versions: only proceed if VERSION > CHART_VERSION
+          if [ "$(printf '%s\n' "$CHART_VERSION" "$VERSION" | sort -V | tail -n1)" != "$VERSION" ] || [ "$VERSION" = "$CHART_VERSION" ]; then
+            echo "⏭️ Skipping: VERSION ($VERSION) is not greater than Chart.yaml version ($CHART_VERSION)"
+            continue
+          fi
+          
+          echo "✓ Version check passed: $VERSION > $CHART_VERSION"
             
             # Update version in Chart.yaml
             sed -i "s/^version:.*/version: $VERSION/" $dir/Chart.yaml
