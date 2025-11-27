@@ -20,13 +20,17 @@ package_and_publish:
         CHART_VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
         CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
         TGZ_NAME="${CHART_NAME}-${VERSION}.tgz"
+        HELM_REPO_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
 
-        helm package $dir  
-        curl --fail-with-body --request POST \
-        --user gitlab-ci-token:$CI_JOB_TOKEN \
-        --form "chart=@${TGZ_NAME}" \
-        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
+        helm package $dir 
 
+        curl --request POST \
+          --form "chart=@${TGZ_NAME}" \
+          --user gitlab-ci-token:$CI_JOB_TOKEN \
+          --write-out "%{http_code}" \
+          --silent \
+          --output /dev/null \
+          "${HELM_REPO_URL}"
       done
       
   rules:
@@ -48,7 +52,7 @@ publish_to_github_packages:
         CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
         TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
         
-        helm registry login ghcr.io -u $GITHUB_USER -p $GITHUB_BOT_TOKEN
+        helm registry login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_BOT_TOKEN
         helm package $dir          
         helm push ${TGZ_NAME} oci://ghcr.io/${GITHUB_ORG}
       done
