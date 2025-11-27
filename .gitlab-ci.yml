@@ -70,6 +70,12 @@ package_and_publish:
           # This ensures the generated package has the correct version (x.x.x)
           sed -i "s/^version:.*/version: $VERSION/" $dir/Chart.yaml
           
+          # Commit the Chart.yaml change to git
+          git config user.email "ci@gitlab.com"
+          git config user.name "GitLab CI"
+          git add $dir/Chart.yaml
+          git commit -m "Update $dir Chart.yaml version to $VERSION [skip ci]" || true
+          
           # Package the chart
           helm package $dir
           
@@ -97,6 +103,14 @@ package_and_publish:
           fi
         fi
       done
+      
+      # Push all Chart.yaml changes back to repository
+      if git diff-index --quiet HEAD --; then
+        echo "No Chart.yaml changes to push."
+      else
+        git push https://oauth2:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git HEAD:${CI_COMMIT_REF_NAME}
+        echo "Pushed Chart.yaml version updates to repository."
+      fi
   rules:
     - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
       when: always
