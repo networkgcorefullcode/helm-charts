@@ -159,7 +159,7 @@ publish_to_github_packages:
               # Alternative: Use helm push with OCI registry
               echo "${GITHUB_BOT_TOKEN}" | helm registry login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
               
-              helm push ${TGZ_NAME} oci://ghcr.io/${GITHUB_ORG}/charts
+              helm push ${TGZ_NAME} oci://ghcr.io/${GITHUB_ORG}/${CHART_NAME}
               
               if [ $? -eq 0 ]; then
                 echo "✅ Success: Version $VERSION of $CHART_NAME published to GitHub Packages via OCI."
