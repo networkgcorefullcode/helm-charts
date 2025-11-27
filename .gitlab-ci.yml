@@ -1,4 +1,4 @@
-﻿stages:
+stages:
   - release
   - publish_github
 
@@ -91,6 +91,7 @@ package_and_publish:
       done
   rules:
     - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
+      when: always
 
 publish_to_github_packages:
   stage: publish_github
@@ -175,3 +176,4 @@ publish_to_github_packages:
       done
   rules:
     - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
+      when: always
