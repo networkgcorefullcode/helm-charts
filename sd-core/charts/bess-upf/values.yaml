@@ -5,9 +5,9 @@
 images:
   repository: "" #default docker hub
   tags:
-    bess: omecproject/upf-epc-bess:rel-1.5.0
-    pfcpiface: omecproject/upf-epc-pfcpiface:rel-1.5.0
-    tools: busybox:stable
+    bess: omecproject/upf-epc-bess:rel-2.1.1
+    pfcpiface: omecproject/upf-epc-pfcpiface:rel-2.1.1
+    tools: omecproject/pod-init:rel-1.1.3
   pullPolicy: IfNotPresent
   # Secrets must be manually created in the namespace.
   pullSecrets:
@@ -20,7 +20,7 @@ nodeSelectors:
     value: omec-upf
 
 resources:
-  enabled: true
+  enabled: false
   bess:
     requests:
       cpu: 2
@@ -65,9 +65,9 @@ config:
       # Provide nodePort when serviceType is NodePort
       #nodePort: 30088
     hugepage:
-      enabled: true
+      enabled: false
     sriov:
-      enabled: true
+      enabled: false
     # Dynamic IP allocation is not supported yet
     # Custom routes inside UPF
     #routes:
@@ -95,6 +95,8 @@ config:
       #mac:
       #vlan:
       #iface:
+    closedLoop: false
+    closedLoopPort: 9301
     cfgFiles:
       upf.jsonc:
         mode: dpdk
