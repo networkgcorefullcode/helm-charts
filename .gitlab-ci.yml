@@ -95,7 +95,6 @@ package_and_publish:
             echo "Error: Upload failed with HTTP code $HTTP_STATUS."
             exit 1
           fi
-          fi
         fi
       done
   rules:
@@ -186,7 +185,6 @@ publish_to_github_packages:
               echo "Error: Failed to upload to GitHub Packages."
               exit 1
             fi
-          fi
           fi
         fi
       done
