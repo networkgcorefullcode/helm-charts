@@ -19,7 +19,7 @@ package_and_publish:
         dir=${dir%*/}          
         CHART_VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
         CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
-        TGZ_NAME="${CHART_NAME}-${VERSION}.tgz"
+        TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
         HELM_REPO_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
 
         helm package $dir 
