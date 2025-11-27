@@ -29,7 +29,7 @@ omec-sub-provision:
     #tags:
     #  simapp: #add simapp override image
 
-# testing 5G control plane
+# testing 5G control plane 2.45.512
 5g-ran-sim:
   enable: false
   #images:
