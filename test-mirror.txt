@@ -1,1 +1,0 @@
-Prueba de sincronización para helm-charts
