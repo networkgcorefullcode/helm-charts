@@ -16,7 +16,7 @@ dependencies:
   alias: omec-user-plane
   name: bess-upf
   repository: file://core-helm/bess-upf
-  version: 2.0.3
+  version: 1.3.1
 - condition: 5g-ran-sim.enable
   name: 5g-ran-sim
   repository: file://core-helm/5g-ran-sim
