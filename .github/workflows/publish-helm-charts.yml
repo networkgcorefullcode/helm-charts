@@ -74,7 +74,7 @@ jobs:
                   echo "Updating dependencies for sub-chart: $chart_dir"
                   helm dependency update "$chart_dir"
                   helm dependency list "$chart_dir"
-                  helm package "$dir"
+                  helm package "$chart_dir"
                   ls -lh $dir
                 fi
               done
