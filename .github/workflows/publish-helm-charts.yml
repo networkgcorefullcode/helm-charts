@@ -71,11 +71,12 @@ jobs:
               # Package the chart
               helm dependency update $dir
               helm dependency list $dir
-              helm dependency update charts/5g-control-plane
-              helm dependency update charts/5g-ran-sim
-              helm dependency update charts/bess-upf
-              helm dependency update charts/omec-control-plane
-              helm dependency update charts/omec-sub-provision
+              ls -lh $dir
+              helm dependency update $dir/charts/5g-control-plane
+              helm dependency update $dir/charts/5g-ran-sim
+              helm dependency update $dir/charts/bess-upf
+              helm dependency update $dir/charts/omec-control-plane
+              helm dependency update $dir/charts/omec-sub-provision
               
               rm -rf $dir/core-helm/
               helm package $dir -d packaged-charts
