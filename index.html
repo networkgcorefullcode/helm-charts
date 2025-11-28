@@ -7,15 +7,34 @@
         h1 { color: #333; }
         pre { background: #f4f4f4; padding: 15px; border-radius: 5px; }
         code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; }
+        .info { background: #e7f3fe; padding: 15px; border-left: 4px solid #2196F3; margin: 20px 0; }
     </style>
 </head>
 <body>
     <h1>Helm Charts Repository</h1>
-    <p>Add this repository to Helm:</p>
+    
+    <div class="info">
+      <strong>Repository URL:</strong> https://networkgcorefullcode.github.io/helm-charts
+    </div>
+    
+    <h2>Add this repository to Helm:</h2>
     <pre><code>helm repo add my-charts https://networkgcorefullcode.github.io/helm-charts</code></pre>
+    
+    <h2>Update your repositories:</h2>
     <pre><code>helm repo update</code></pre>
-    <p>Search for charts:</p>
+    
+    <h2>Search for charts:</h2>
     <pre><code>helm search repo my-charts</code></pre>
-    <p><a href="index.yaml">View index.yaml</a></p>
+    
+    <h2>Install a chart:</h2>
+    <pre><code>helm install my-release my-charts/[CHART-NAME]</code></pre>
+    
+    <h2>Available Resources:</h2>
+    <ul>
+      <li><a href="index.yaml">View index.yaml</a></li>
+    </ul>
+    
+    <h2>Charts in this repository:</h2>
+    <pre>sd-core-3.1.8.tgz</pre>
 </body>
 </html>

@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   sd-core:
   - apiVersion: v2
-    created: "2025-11-28T01:16:24.735154834Z"
+    created: "2025-11-28T01:27:02.790871562Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -26,7 +26,7 @@ entries:
       repository: file://../5g-ran-sim
       version: 2.0.3
     description: SD-Core control plane services
-    digest: 3af2dd705945671de1ec5a5ee042755f57fef2e089f8bb1ce2b2c50cb8231eb9
+    digest: 02b554a6ddeaf1c374d7aeb9a3b673a99fbc4db23b23ac2bf3f5e793a23ef6ef
     home: https://opennetworking.org/sd-core/
     icon: https://guide.opencord.org/logos/cord.svg
     maintainers:
@@ -37,4 +37,4 @@ entries:
     urls:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.8.tgz
     version: 3.1.8
-generated: "2025-11-28T01:16:24.727084717Z"
+generated: "2025-11-28T01:27:02.782917632Z"
