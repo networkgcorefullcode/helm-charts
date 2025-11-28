@@ -30,7 +30,7 @@ package_and_publish:
             helm dependency list "$chart_dir"
           fi
         done
-        rm -rf core-helm/
+        rm -rf $dir/core-helm/
         helm package $dir 
 
 
@@ -70,7 +70,7 @@ publish_to_github_packages:
             helm dependency list "$chart_dir"
           fi
         done
-        rm -rf core-helm/
+        rm -rf $dir/core-helm/
         helm registry login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_BOT_TOKEN
         helm package $dir          
         helm push ${TGZ_NAME} oci://ghcr.io/${GITHUB_ORG}
