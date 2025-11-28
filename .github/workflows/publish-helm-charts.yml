@@ -72,8 +72,8 @@ jobs:
               helm dependency update $dir
               helm dependency list $dir
               ls -lh $dir
-              helm dependency update $dir/charts/5g-control-plane
               helm dependency update $dir/charts/5g-ran-sim
+              helm dependency update $dir/charts/5g-control-plane
               helm dependency update $dir/charts/bess-upf
               helm dependency update $dir/charts/omec-control-plane
               helm dependency update $dir/charts/omec-sub-provision
