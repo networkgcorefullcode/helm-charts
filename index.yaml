@@ -2,7 +2,43 @@ apiVersion: v1
 entries:
   sd-core:
   - apiVersion: v2
-    created: "2025-11-28T01:27:02.790871562Z"
+    created: "2025-11-28T01:28:51.499474726Z"
+    dependencies:
+    - condition: omec-control-plane.enable4G
+      name: omec-control-plane
+      repository: file://../omec-control-plane
+      version: 0.13.0
+    - condition: omec-sub-provision.enable
+      name: omec-sub-provision
+      repository: file://../omec-sub-provision
+      version: 2.1.0
+    - condition: 5g-control-plane.enable5G
+      name: 5g-control-plane
+      repository: file://../5g-control-plane
+      version: 3.0.0
+    - alias: omec-user-plane
+      condition: omec-user-plane.enable
+      name: bess-upf
+      repository: file://../bess-upf
+      version: 2.0.3
+    - condition: 5g-ran-sim.enable
+      name: 5g-ran-sim
+      repository: file://../5g-ran-sim
+      version: 2.0.3
+    description: SD-Core control plane services
+    digest: b6987facdf2ca790488e40b231aeaadca18eb0892d8e3849ddbebab6c7e6a517
+    home: https://opennetworking.org/sd-core/
+    icon: https://guide.opencord.org/logos/cord.svg
+    maintainers:
+    - email: dev@lists.aetherproject.org
+      name: SD-Core Support
+    name: sd-core
+    type: application
+    urls:
+    - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.9.tgz
+    version: 3.1.9
+  - apiVersion: v2
+    created: "2025-11-28T01:28:51.492209855Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -37,4 +73,4 @@ entries:
     urls:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.8.tgz
     version: 3.1.8
-generated: "2025-11-28T01:27:02.782917632Z"
+generated: "2025-11-28T01:28:51.483478419Z"
