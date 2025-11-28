@@ -69,6 +69,8 @@ jobs:
               echo "Version: $VERSION"
               
               # Package the chart
+              helm dependency update $dir
+              helm dependency list $dir
               helm package $dir -d packaged-charts
               
               echo "Packaged: ${CHART_NAME}-${VERSION}.tgz"
