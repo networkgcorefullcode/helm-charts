@@ -1,0 +1,90 @@
+name: Publish Helm Charts to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: 'latest'
+
+      - name: Build and Package Helm Charts
+        run: |
+          echo "Building Helm Charts..."
+          
+          # Create output directory for packages
+          mkdir -p packaged-charts
+          
+          # Iterate over each directory in the root
+          for dir in */; do
+            # Remove trailing slash from directory name
+            dir=${dir%*/}
+            
+            # Check if it's a Helm directory (has Chart.yaml)
+            if [ -f "$dir/Chart.yaml" ]; then
+              
+              # Read version and name from Chart.yaml
+              VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
+              CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
+              
+              echo "--------------------------------------------------"
+              echo "Processing: $dir"
+              echo "Chart: $CHART_NAME"
+              echo "Version: $VERSION"
+              
+              # Package the chart
+              helm package $dir -d packaged-charts
+              
+              echo "Packaged: ${CHART_NAME}-${VERSION}.tgz"
+            fi
+          done
+
+      - name: Generate Helm Repository Index
+        run: |
+          cd packaged-charts
+          helm repo index . --url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          
+          # Create index.html
+          cat > index.html <<EOF
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Helm Charts Repository</title>
+              <style>
+                  body { font-family: Arial, sans-serif; margin: 40px; }
+                  h1 { color: #333; }
+                  pre { background: #f4f4f4; padding: 15px; border-radius: 5px; }
+                  code { background: #e8e8e8; padding: 2px 6px; border-radius: 3px; }
+              </style>
+          </head>
+          <body>
+              <h1>Helm Charts Repository</h1>
+              <p>Add this repository to Helm:</p>
+              <pre><code>helm repo add my-charts https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}</code></pre>
+              <pre><code>helm repo update</code></pre>
+              <p>Search for charts:</p>
+              <pre><code>helm search repo my-charts</code></pre>
+              <p><a href="index.yaml">View index.yaml</a></p>
+          </body>
+          </html>
+          EOF
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packaged-charts
+          publish_branch: gh-pages
+          force_orphan: false
