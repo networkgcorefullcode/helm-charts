@@ -2,7 +2,43 @@ apiVersion: v1
 entries:
   sd-core:
   - apiVersion: v2
-    created: "2025-11-28T01:28:51.499474726Z"
+    created: "2025-11-28T05:56:53.679876313Z"
+    dependencies:
+    - condition: omec-control-plane.enable4G
+      name: omec-control-plane
+      repository: file://../omec-control-plane
+      version: 0.13.0
+    - condition: omec-sub-provision.enable
+      name: omec-sub-provision
+      repository: file://../omec-sub-provision
+      version: 2.1.0
+    - condition: 5g-control-plane.enable5G
+      name: 5g-control-plane
+      repository: file://../5g-control-plane
+      version: 3.0.0
+    - alias: omec-user-plane
+      condition: omec-user-plane.enable
+      name: bess-upf
+      repository: file://../bess-upf
+      version: 2.0.3
+    - condition: 5g-ran-sim.enable
+      name: 5g-ran-sim
+      repository: file://../5g-ran-sim
+      version: 2.0.3
+    description: SD-Core control plane services
+    digest: 3ba2abd08fb071e02a643d1a4c6104a4cac88ff49307c52b96da42c18d9e9905
+    home: https://opennetworking.org/sd-core/
+    icon: https://guide.opencord.org/logos/cord.svg
+    maintainers:
+    - email: dev@lists.aetherproject.org
+      name: SD-Core Support
+    name: sd-core
+    type: application
+    urls:
+    - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.10.tgz
+    version: 3.1.10
+  - apiVersion: v2
+    created: "2025-11-28T05:56:53.693758748Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -38,7 +74,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.9.tgz
     version: 3.1.9
   - apiVersion: v2
-    created: "2025-11-28T01:28:51.492209855Z"
+    created: "2025-11-28T05:56:53.687077763Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -73,4 +109,4 @@ entries:
     urls:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.8.tgz
     version: 3.1.8
-generated: "2025-11-28T01:28:51.483478419Z"
+generated: "2025-11-28T05:56:53.671987115Z"
