@@ -1,5 +1,0 @@
-apiVersion: v1
-description: 5G RAN Simulator Service
-icon: https://guide.opencord.org/logos/cord.svg
-name: 5g-ran-sim
-version: 2.0.3
