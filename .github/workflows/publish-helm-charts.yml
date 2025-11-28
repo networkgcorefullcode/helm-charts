@@ -69,18 +69,18 @@ jobs:
               echo "Version: $VERSION"
               
               # Package the chart
+              for chart_dir in $dir/core-helm/*/; do
+                if [ -d "$chart_dir" ]; then
+                  echo "Updating dependencies for sub-chart: $chart_dir"
+                  helm dependency update "$chart_dir"
+                  helm dependency list "$chart_dir"
+                  helm package "$dir"
+                fi
+              done
               helm dependency update $dir
               helm dependency list $dir
-              ls -lh $dir
-              sleep 15
-              helm dependency update $dir/charts/5g-ran-sim
-              helm dependency update $dir/charts/5g-control-plane
-              helm dependency update $dir/charts/bess-upf
-              helm dependency update $dir/charts/omec-control-plane
-              helm dependency update $dir/charts/omec-sub-provision
-              
               rm -rf $dir/core-helm/
-              helm package $dir -d packaged-charts
+              helm package $dir -d packaged-charts 
               
               echo "Packaged: ${CHART_NAME}-${VERSION}.tgz"
             fi
