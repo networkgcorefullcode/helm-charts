@@ -71,6 +71,13 @@ jobs:
               # Package the chart
               helm dependency update $dir
               helm dependency list $dir
+              for chart_dir in $dir/charts/*/; do
+                if [ -d "$chart_dir" ]; then
+                  helm dependency update "$chart_dir"
+                  helm dependency list "$chart_dir"
+                fi
+              done
+              rm -rf $dir/core-helm/
               helm package $dir -d packaged-charts
               
               echo "Packaged: ${CHART_NAME}-${VERSION}.tgz"

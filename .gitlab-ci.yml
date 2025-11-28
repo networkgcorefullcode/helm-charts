@@ -22,9 +22,17 @@ package_and_publish:
         TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
         HELM_REPO_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
 
-        helm dependency update
-        helm dependency list
+        helm dependency update $dir
+        helm dependency list $dir
+        for chart_dir in $dir/charts/*/; do
+          if [ -d "$chart_dir" ]; then
+            helm dependency update "$chart_dir"
+            helm dependency list "$chart_dir"
+          fi
+        done
+        rm -rf core-helm/
         helm package $dir 
+
 
         curl --request POST \
           --form "chart=@${TGZ_NAME}" \
@@ -54,8 +62,15 @@ publish_to_github_packages:
         CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
         TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
         
-        helm dependency update
-        helm dependency list
+        helm dependency update $dir
+        helm dependency list $dir
+        for chart_dir in $dir/charts/*/; do
+          if [ -d "$chart_dir" ]; then
+            helm dependency update "$chart_dir"
+            helm dependency list "$chart_dir"
+          fi
+        done
+        rm -rf core-helm/
         helm registry login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_BOT_TOKEN
         helm package $dir          
         helm push ${TGZ_NAME} oci://ghcr.io/${GITHUB_ORG}
