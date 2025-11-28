@@ -75,6 +75,7 @@ jobs:
                   helm dependency update "$chart_dir"
                   helm dependency list "$chart_dir"
                   helm package "$dir"
+                  ls -lh $dir
                 fi
               done
               ls -lh $dir
