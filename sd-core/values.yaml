@@ -34,4 +34,4 @@ omec-sub-provision:
   enable: false
   #images:
   #  tags:
-      #RAN SIM image
+      #RAN SIM images
