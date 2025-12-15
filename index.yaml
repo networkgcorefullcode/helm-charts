@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   sd-core:
   - apiVersion: v2
-    created: "2025-11-28T07:41:54.073667605Z"
+    created: "2025-12-15T19:54:25.171234319Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -38,7 +38,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.12.tgz
     version: 3.1.12
   - apiVersion: v2
-    created: "2025-11-28T07:41:54.053681409Z"
+    created: "2025-12-15T19:54:25.15269357Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -74,7 +74,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.11.tgz
     version: 3.1.11
   - apiVersion: v2
-    created: "2025-11-28T07:41:54.047330186Z"
+    created: "2025-12-15T19:54:25.145193027Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -110,7 +110,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.10.tgz
     version: 3.1.10
   - apiVersion: v2
-    created: "2025-11-28T07:41:54.087946615Z"
+    created: "2025-12-15T19:54:25.185436917Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -146,7 +146,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.9.tgz
     version: 3.1.9
   - apiVersion: v2
-    created: "2025-11-28T07:41:54.08007525Z"
+    created: "2025-12-15T19:54:25.178299138Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -170,7 +170,7 @@ entries:
       repository: file://../5g-ran-sim
       version: 2.0.3
     description: SD-Core control plane services
-    digest: 02b554a6ddeaf1c374d7aeb9a3b673a99fbc4db23b23ac2bf3f5e793a23ef6ef
+    digest: e509e43ed5a5cd9f40afb09b675e02ab8be5f4ae467cd729cdbbd43b7976021d
     home: https://opennetworking.org/sd-core/
     icon: https://guide.opencord.org/logos/cord.svg
     maintainers:
@@ -181,4 +181,4 @@ entries:
     urls:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.8.tgz
     version: 3.1.8
-generated: "2025-11-28T07:41:54.039760022Z"
+generated: "2025-12-15T19:54:25.137441751Z"
