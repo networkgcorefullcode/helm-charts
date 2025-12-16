@@ -17,21 +17,37 @@ omec-control-plane:
   #  config4g:
   #    deploy: true
 
-# Override values for omec-user-plane Helm Chart
-# https://github.com/omec-project/sdcore-helm-charts/blob/main/bess-upf/values.yaml
 omec-user-plane:
-  enable: false
+  enable: true
+  #images:
+  #  tags:
+      #4G/5G user plane images
+  #config:
+  #  upf:
+  #    cfgFiles:
+  #      upf.jsonc:
+  #        cpiface:
 
 omec-sub-provision:
-  enable: false
-  # images:
-  #   repository: "registry.aetherproject.org/proxy/"
-    #tags:
-    #  simapp: #add simapp override image
+  enable: true
+  #images:
+  #  tags:
 
+5g-control-plane:
+  enable5G: true
+  kafka:
+    deploy: false
+    persistence:
+      enabled: false
+    zookeeper:
+      persistence:
+        enabled: false
+  #images:
+  #  tags:
+      #5G NF images
 
 5g-ran-sim:
   enable: false
   #images:
   #  tags:
-      #RAN SIM images
+      #RAN SIM image

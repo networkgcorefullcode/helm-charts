@@ -131,14 +131,3 @@ Generate certificates for 5GC-CP
 tls.crt: {{ $cert.Cert | b64enc }}
 tls.key: {{ $cert.Key | b64enc }}
 {{- end -}}
-
-{{/*
-Generate certificates for WebUI
-*/}}
-{{- define "webui.gen-certs" -}}
-{{- $altNames := list ( printf "webui.%s" .Release.Namespace ) ( printf "webui.%s.svc" .Release.Namespace ) -}}
-{{- $ca := genCA "5g-control-plane-ca" 365 -}}
-{{- $cert := genSignedCert "webui" nil $altNames 365 $ca -}}
-tls.crt: {{ $cert.Cert | b64enc }}
-tls.key: {{ $cert.Key | b64enc }}
-{{- end -}}

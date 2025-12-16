@@ -20,7 +20,7 @@ nodeSelectors:
     value: omec-upf
 
 resources:
-  enabled: false
+  enabled: true
   bess:
     requests:
       cpu: 2
@@ -65,9 +65,9 @@ config:
       # Provide nodePort when serviceType is NodePort
       #nodePort: 30088
     hugepage:
-      enabled: false
+      enabled: true
     sriov:
-      enabled: false
+      enabled: true
     # Dynamic IP allocation is not supported yet
     # Custom routes inside UPF
     #routes:

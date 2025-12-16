@@ -15,6 +15,7 @@ metadata:
 {{ tuple "udm" . | include "5g-control-plane.metadata_labels" | indent 4 }}
 spec:
   replicas: 1
+  #serviceName: udm-headless
   selector:
     matchLabels:
 {{ tuple "udm" . | include "5g-control-plane.metadata_labels" | indent 6 }}
@@ -40,17 +41,11 @@ spec:
       - name: wait-udm-module
         image: {{ .Values.images.repository }}{{ .Values.images.tags.init }}
         imagePullPolicy: {{ .Values.images.pullPolicy }}
-        command:
-          - sh
-          - -c
-          - until nslookup udm; do echo waiting for udm; sleep 4; done;
+        command: ['sh', '-c', 'until nslookup udm; do echo waiting for udm; sleep 4; done;']
       - name: wait-udr-module
         image: {{ .Values.images.repository }}{{ .Values.images.tags.init }}
         imagePullPolicy: {{ .Values.images.pullPolicy }}
-        command:
-          - sh
-          - -c
-          - until nslookup udr; do echo waiting for udr; sleep 4; done;
+        command: ['sh', '-c', 'until nslookup udr; do echo waiting for udr; sleep 4; done;']
     {{- if .Values.config.coreDump.enabled }}
     {{ tuple "udm" . | include "5g-control-plane.coredump_init" | indent 6 }}
     {{- end }}
@@ -64,24 +59,11 @@ spec:
       {{- end }}
         stdin: true
         tty: true
-        command:
-          - /opt/udm-run.sh
+        command: ["/opt/udm-run.sh"]
         env:
       {{- if eq .Values.config.GIN.mode "release" }}
         - name: GIN_MODE
           value: release
-      {{- end }}
-      {{- if .Values.config.udm.ssm.enable }}
-        - name: SSM_SERVICE_ID
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.config.udm.credentialsSecretName }}
-              key: {{ .Values.config.udm.credentials.serviceIdKey | quote }}
-        - name: SSM_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.config.udm.credentialsSecretName }}
-              key: {{ .Values.config.udm.credentials.passwordKey | quote }}
       {{- end }}
         - name: POD_IP
           valueFrom:
@@ -97,11 +79,6 @@ spec:
         - name: certs
           mountPath: /var/run/certs
           readOnly: true
-      {{- if .Values.config.udm.ssm.enable }}
-        - name: udm-tls
-          mountPath: /etc/udm/tls
-          readOnly: true
-      {{- end }}
       {{- if .Values.config.coreDump.enabled }}
         - name: coredump
           mountPath: /tmp/coredump
@@ -114,18 +91,6 @@ spec:
       - name: certs
         secret:
           secretName: udm-certs
-    {{- if .Values.config.udm.ssm.enable }}
-      - name: udm-tls
-        secret:
-          secretName: {{ .Values.config.udm.tlsSecretName }}
-          items:
-            - key: {{ .Values.config.udm.tlsSecretKeys.cert | quote }}
-              path: tls.crt
-            - key: {{ .Values.config.udm.tlsSecretKeys.key | quote }}
-              path: tls.key
-            - key: {{ .Values.config.udm.tlsSecretKeys.ca | quote }}
-              path: ca.crt
-    {{- end }}
     {{- if .Values.config.coreDump.enabled }}
       - name: host-rootfs
         hostPath:

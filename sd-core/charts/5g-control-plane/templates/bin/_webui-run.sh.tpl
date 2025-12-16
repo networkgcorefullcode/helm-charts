@@ -5,7 +5,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-set -x
+set -xe
 
 {{- if .Values.config.coreDump.enabled }}
 cp /usr/local/bin/webconsole /tmp/coredump/
@@ -19,8 +19,3 @@ cat $CFGPATH/$FILENAME
 echo ""
 
 GOTRACEBACK=crash webconsole -cfg $CFGPATH/$FILENAME
-
-if [ $? -ne 0 ]; then
-	echo "Error: webconsole command failed."
-    GOTRACEBACK=crash webconsole-ui -cfg $CFGPATH/$FILENAME
-fi
