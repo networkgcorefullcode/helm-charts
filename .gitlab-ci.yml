@@ -3,14 +3,27 @@ stages:
   - publish_github
 
 variables:
-  # Ensure git has enough history to compare changes
   GIT_DEPTH: "2"
+  # Valores por defecto (pueden ser sobrescritos por variables de CI/CD)
+  GITHUB_ORG: "networkgcorefullcode"  # ⬅️ Cambia esto por tu organización
 
 package_and_publish:
   stage: release
-  image: dtzar/helm-kubectl:latest  # Image that includes Helm, Git and Curl
+  image: dtzar/helm-kubectl:latest
   before_script:
     - apk add --no-cache curl git
+    # Verificar variables requeridas
+    - |
+      if [ -z "$GITHUB_USERNAME" ]; then
+        echo "❌ ERROR: Debes configurar GITHUB_USERNAME en GitLab CI/CD Variables"
+        exit 1
+      fi
+    - |
+      if [ -z "$GITHUB_BOT_TOKEN" ]; then
+        echo "❌ ERROR: Debes configurar GITHUB_BOT_TOKEN en GitLab CI/CD Variables"
+        exit 1
+      fi
+    - echo "✅ Variables configuradas correctamente"
   tags:
     - doks
   script:
@@ -19,10 +32,21 @@ package_and_publish:
         dir=${dir%*/}          
         CHART_VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
         CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
-        TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
+        
+        # Agregar sufijo según la rama
+        if [ "$CI_COMMIT_REF_NAME" = "operator" ]; then
+          TGZ_NAME="${CHART_NAME}-${CHART_VERSION}-operator.tgz"
+        else
+          TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
+        fi
+        
         HELM_REPO_URL="${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/stable/charts"
 
-        helm package $dir 
+        helm package $dir --version ${CHART_VERSION} -d .
+
+        if [ "$CI_COMMIT_REF_NAME" = "operator" ]; then
+          mv "${CHART_NAME}-${CHART_VERSION}.tgz" "${TGZ_NAME}"
+        fi
 
         curl --request POST \
           --form "chart=@${TGZ_NAME}" \
@@ -34,7 +58,9 @@ package_and_publish:
       done
       
   rules:
-    - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
+    - if: $CI_COMMIT_REF_NAME == "main"
+      when: always
+    - if: $CI_COMMIT_REF_NAME == "operator"
       when: always
 
 publish_to_github_packages:
@@ -44,18 +70,44 @@ publish_to_github_packages:
     - doks
   before_script:
     - apk add --no-cache curl git
+    # Verificar variables requeridas
+    - |
+      if [ -z "$GITHUB_USERNAME" ] || [ -z "$GITHUB_BOT_TOKEN" ]; then
+        echo "❌ ERROR: Configura GITHUB_USERNAME y GITHUB_BOT_TOKEN en GitLab"
+        exit 1
+      fi
+    - echo "🚀 Publicando a ghcr.io/${GITHUB_ORG}"
   script:
     - |      
       for dir in */; do
         dir=${dir%*/}        
         CHART_VERSION=$(grep '^version:' $dir/Chart.yaml | awk '{print $2}')
         CHART_NAME=$(grep '^name:' $dir/Chart.yaml | awk '{print $2}')
-        TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
         
+        if [ "$CI_COMMIT_REF_NAME" = "operator" ]; then
+          CHART_TAG="${CHART_VERSION}-operator"
+          TGZ_NAME="${CHART_NAME}-${CHART_VERSION}-operator.tgz"
+        else
+          CHART_TAG="${CHART_VERSION}"
+          TGZ_NAME="${CHART_NAME}-${CHART_VERSION}.tgz"
+        fi
+        
+        echo "📦 Empaquetando: $CHART_NAME versión $CHART_TAG"
         helm registry login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_BOT_TOKEN
-        helm package $dir          
+        
+        helm package $dir --version ${CHART_VERSION} -d .
+        
+        if [ "$CI_COMMIT_REF_NAME" = "operator" ]; then
+          mv "${CHART_NAME}-${CHART_VERSION}.tgz" "${TGZ_NAME}"
+        fi
+        
+        echo "⬆️  Subiendo a: ghcr.io/${GITHUB_ORG}/${CHART_NAME}:${CHART_TAG}"
         helm push ${TGZ_NAME} oci://ghcr.io/${GITHUB_ORG}
+        
+        echo "✅ Completado: ${CHART_NAME}:${CHART_TAG}"
       done
   rules:
-    - if: $CI_COMMIT_REF_NAME == "main" # Solo se ejecuta si es la rama 'main'
+    - if: $CI_COMMIT_REF_NAME == "main"
+      when: always
+    - if: $CI_COMMIT_REF_NAME == "operator"
       when: always
