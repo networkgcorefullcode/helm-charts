@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 */}}
 {{- if .Values.config.webui.deploy }}
-{{ tuple "webui" . | include "5g-control-plane.service_account" }}
+# {{ tuple "webui" . | include "5g-control-plane.service_account" }}
 ---
 apiVersion: apps/v1
 kind: Deployment

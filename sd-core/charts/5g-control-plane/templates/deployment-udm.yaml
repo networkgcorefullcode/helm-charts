@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 */}}
 {{- if .Values.config.udm.deploy }}
-{{ tuple "udm" . | include "5g-control-plane.service_account" }}
+# {{ tuple "udm" . | include "5g-control-plane.service_account" }}
 ---
 apiVersion: apps/v1
 kind: Deployment
