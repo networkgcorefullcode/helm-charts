@@ -2,7 +2,43 @@ apiVersion: v1
 entries:
   sd-core:
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.740484799Z"
+    created: "2025-12-24T23:00:25.631594444Z"
+    dependencies:
+    - condition: omec-control-plane.enable4G
+      name: omec-control-plane
+      repository: file://./charts/omec-control-plane
+      version: 0.13.0
+    - condition: omec-sub-provision.enable
+      name: omec-sub-provision
+      repository: file://./charts/omec-sub-provision
+      version: 2.1.0
+    - condition: 5g-control-plane.enable5G
+      name: 5g-control-plane
+      repository: file://./charts/5g-control-plane
+      version: 3.1.10
+    - alias: omec-user-plane
+      condition: omec-user-plane.enable
+      name: bess-upf
+      repository: file://./charts/bess-upf
+      version: 1.3.1
+    - condition: 5g-ran-sim.enable
+      name: 5g-ran-sim
+      repository: file://./charts/5g-ran-sim
+      version: 2.0.3
+    description: SD-Core control plane services
+    digest: d75d087f2672b18497284270ce705f311aee2a9c0eef3641fa409c685f265dbc
+    home: https://opennetworking.org/sd-core/
+    icon: https://guide.opencord.org/logos/cord.svg
+    maintainers:
+    - email: dev@lists.aetherproject.org
+      name: SD-Core Support
+    name: sd-core
+    type: application
+    urls:
+    - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.16.tgz
+    version: 3.1.16
+  - apiVersion: v2
+    created: "2025-12-24T23:00:25.597193082Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -38,7 +74,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.15.tgz
     version: 3.1.15
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.705510478Z"
+    created: "2025-12-24T23:00:25.561660279Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -74,7 +110,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.14.tgz
     version: 3.1.14
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.670599344Z"
+    created: "2025-12-24T23:00:25.526442582Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -110,7 +146,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.13.tgz
     version: 3.1.13
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.634347634Z"
+    created: "2025-12-24T23:00:25.491953749Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -146,7 +182,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.12.tgz
     version: 3.1.12
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.616067242Z"
+    created: "2025-12-24T23:00:25.473529179Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -182,7 +218,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.11.tgz
     version: 3.1.11
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.609842784Z"
+    created: "2025-12-24T23:00:25.467234583Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -218,7 +254,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.10.tgz
     version: 3.1.10
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.78134183Z"
+    created: "2025-12-24T23:00:25.675431111Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -254,7 +290,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.9.tgz
     version: 3.1.9
   - apiVersion: v2
-    created: "2025-12-24T22:05:34.746766454Z"
+    created: "2025-12-24T23:00:25.63969774Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -289,4 +325,4 @@ entries:
     urls:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.8.tgz
     version: 3.1.8
-generated: "2025-12-24T22:05:34.572828898Z"
+generated: "2025-12-24T23:00:25.431290464Z"
