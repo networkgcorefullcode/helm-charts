@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   sd-core:
   - apiVersion: v2
-    created: "2025-12-25T03:10:17.161250183Z"
+    created: "2025-12-25T03:17:53.220048822Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -26,7 +26,7 @@ entries:
       repository: file://./charts/5g-ran-sim
       version: 2.0.3
     description: SD-Core control plane services
-    digest: 1d9a6218b0fcd1f6113c33322aaaf220da8849ab2450947c49486f05ffc1e330
+    digest: 9412b5936df2a84de12553b9d47a7b41e8750ccc7717c15a4006a9f9a05ae71f
     home: https://opennetworking.org/sd-core/
     icon: https://guide.opencord.org/logos/cord.svg
     maintainers:
@@ -38,7 +38,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.2.2.tgz
     version: 3.2.2
   - apiVersion: v2
-    created: "2025-12-25T03:10:17.153575219Z"
+    created: "2025-12-25T03:17:53.205393153Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -74,7 +74,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.2.1.tgz
     version: 3.2.1
   - apiVersion: v2
-    created: "2025-12-25T03:10:17.074472952Z"
+    created: "2025-12-25T03:17:53.125440778Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -110,7 +110,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.17.tgz
     version: 3.1.17
   - apiVersion: v2
-    created: "2025-12-25T03:10:17.036841373Z"
+    created: "2025-12-25T03:17:53.089573562Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -146,7 +146,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.16.tgz
     version: 3.1.16
   - apiVersion: v2
-    created: "2025-12-25T03:10:16.998770167Z"
+    created: "2025-12-25T03:17:53.052106598Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -182,7 +182,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.15.tgz
     version: 3.1.15
   - apiVersion: v2
-    created: "2025-12-25T03:10:16.945720986Z"
+    created: "2025-12-25T03:17:53.004320642Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -218,7 +218,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.14.tgz
     version: 3.1.14
   - apiVersion: v2
-    created: "2025-12-25T03:10:16.909016581Z"
+    created: "2025-12-25T03:17:52.967970288Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -254,7 +254,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.13.tgz
     version: 3.1.13
   - apiVersion: v2
-    created: "2025-12-25T03:10:16.873305787Z"
+    created: "2025-12-25T03:17:52.93143623Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -290,7 +290,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.12.tgz
     version: 3.1.12
   - apiVersion: v2
-    created: "2025-12-25T03:10:16.853125248Z"
+    created: "2025-12-25T03:17:52.912725287Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -326,7 +326,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.11.tgz
     version: 3.1.11
   - apiVersion: v2
-    created: "2025-12-25T03:10:16.846502673Z"
+    created: "2025-12-25T03:17:52.906369332Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -362,7 +362,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.10.tgz
     version: 3.1.10
   - apiVersion: v2
-    created: "2025-12-25T03:10:17.116678101Z"
+    created: "2025-12-25T03:17:53.16960258Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -398,7 +398,7 @@ entries:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.9.tgz
     version: 3.1.9
   - apiVersion: v2
-    created: "2025-12-25T03:10:17.080982221Z"
+    created: "2025-12-25T03:17:53.133195194Z"
     dependencies:
     - condition: omec-control-plane.enable4G
       name: omec-control-plane
@@ -433,4 +433,4 @@ entries:
     urls:
     - https://networkgcorefullcode.github.io/helm-charts/sd-core-3.1.8.tgz
     version: 3.1.8
-generated: "2025-12-25T03:10:16.806946742Z"
+generated: "2025-12-25T03:17:52.870987178Z"
