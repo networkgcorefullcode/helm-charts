@@ -2,24 +2,24 @@ apiVersion: v2
 dependencies:
 - condition: omec-control-plane.enable4G
   name: omec-control-plane
-  repository: file://./charts/omec-control-plane
+  repository: file://core-helm/omec-control-plane
   version: 0.13.0
 - condition: omec-sub-provision.enable
   name: omec-sub-provision
-  repository: file://./charts/omec-sub-provision
+  repository: file://core-helm/omec-sub-provision
   version: 2.1.0
 - condition: 5g-control-plane.enable5G
   name: 5g-control-plane
-  repository: file://./charts/5g-control-plane
+  repository: file://core-helm/5g-control-plane
   version: 3.0.0
 - alias: omec-user-plane
   condition: omec-user-plane.enable
   name: bess-upf
-  repository: file://./charts/bess-upf
+  repository: file://core-helm/bess-upf
   version: 1.3.1
 - condition: 5g-ran-sim.enable
   name: 5g-ran-sim
-  repository: file://./charts/5g-ran-sim
+  repository: file://core-helm/5g-ran-sim
   version: 2.0.3
 description: SD-Core control plane services
 home: https://opennetworking.org/sd-core/
