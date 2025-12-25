@@ -11,4 +11,4 @@ dependencies:
 description: SD-Core 5G control plane services
 icon: https://guide.opencord.org/logos/cord.svg
 name: 5g-control-plane
-version: 3.1.11
+version: 3.0.0
