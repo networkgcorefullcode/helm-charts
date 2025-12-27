@@ -117,15 +117,21 @@ resources:
 kafka:
   deploy: false
   fullnameOverride: kafka
-  zookeeper:
+  listeners:
+    client:
+      protocol: PLAINTEXT
+    controller:
+      protocol: PLAINTEXT
+    interbroker:
+      protocol: PLAINTEXT
+    external:
+      protocol: PLAINTEXT
+  controller:
+    replicaCount: 1
     persistence:
       enabled: false
-  persistence:
-    enabled: false
-  initContainers:
-    - name: wait-for-zookeeper
-      image: busybox
-      command: ['sh', '-c', 'until nc -z sd-core-zookeeper 2181; do echo waiting for zookeeper; sleep 2; done;']
+  image:
+    repository: bitnamilegacy/kafka # Bitnami moved images to bitnamilegacy (https://hub.docker.com/r/bitnami/kafka)
 
 mongodb:
   deploy: true
